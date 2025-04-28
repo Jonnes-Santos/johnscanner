@@ -8,5 +8,10 @@
     },
     "devDependencies": {
       "@netlify/functions": "^1.0.0"
-    }
+    },
+    "scripts": {
+    "build": "echo 'Building...'"
   }
+    
+  }
+  
