@@ -185,3 +185,202 @@
       flex-direction: column;
     }
   }
+  /* Estilos gerais */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Formulário */
+.scanner-form {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input-group button {
+  padding: 10px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.input-group button:hover {
+  background: #0052a3;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+/* Loading */
+#loading-indicator {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-top: 4px solid #0066cc;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Resultados */
+#results-container {
+  display: none;
+}
+
+.summary-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.summary-item {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+  border-radius: 4px;
+  color: white;
+}
+
+.summary-item.high { background: #e63946; }
+.summary-item.medium { background: #f4a261; }
+.summary-item.low { background: #ffd166; }
+.summary-item.info { background: #457b9d; }
+
+.summary-item .count {
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+}
+
+.summary-item .label {
+  font-size: 14px;
+}
+
+/* Lista de vulnerabilidades */
+.vulnerabilities-list {
+  margin-top: 20px;
+}
+
+.vulnerability {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 4px solid;
+  border-radius: 0 4px 4px 0;
+  background: #f8f9fa;
+}
+
+.vulnerability.high { border-left-color: #e63946; }
+.vulnerability.medium { border-left-color: #f4a261; }
+.vulnerability.low { border-left-color: #ffd166; }
+.vulnerability.info { border-left-color: #457b9d; }
+
+.vulnerability h3 {
+  margin-top: 0;
+  color: #1d3557;
+}
+
+.meta {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.severity {
+  font-weight: bold;
+}
+
+.severity.high { color: #e63946; }
+.severity.medium { color: #f4a261; }
+.severity.low { color: #ffd166; }
+
+code {
+  background: #eee;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.description {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+.empty-state, .error-message, .no-vulnerabilities {
+  text-align: center;
+  padding: 30px;
+  color: #666;
+}
+
+.error-message {
+  color: #e63946;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .summary-card {
+    flex-direction: column;
+  }
+}

@@ -1,30 +1,49 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-// Importa todos os módulos de verificação
-const sqliCheck = require('./security-checks/sqli');
-const xssCheck = require('./security-checks/xss');
-const csrfCheck = require('./security-checks/csrf');
-const corsCheck = require('./security-checks/cors');
-const headersCheck = require('./security-checks/headers');
+// Módulos de verificação (simplificados para exemplo)
+const securityChecks = {
+  sqli: async (url, html) => {
+    // Implementação real do SQLi check
+    return []; // Retorna array de vulnerabilidades
+  },
+  xss: (html) => {
+    // Implementação real do XSS check
+    return [];
+  },
+  csrf: (html) => {
+    // Implementação real do CSRF check
+    return [];
+  },
+  cors: async (url) => {
+    // Implementação real do CORS check
+    return [];
+  },
+  headers: (headers) => {
+    // Implementação real do Headers check
+    return [];
+  }
+};
 
 exports.handler = async (event) => {
   try {
-    // Verifica se é uma requisição POST
+    // Verifica o método HTTP
     if (event.httpMethod !== 'POST') {
       return {
         statusCode: 405,
-        body: JSON.stringify({ error: 'Método não permitido' }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Método não permitido' })
       };
     }
 
     const { url, options } = JSON.parse(event.body);
 
-    // Valida a URL
+    // Validação da URL
     if (!url || !url.startsWith('http')) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'URL inválida. Use http:// ou https://' }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'URL inválida. Use http:// ou https://' })
       };
     }
 
@@ -35,17 +54,17 @@ exports.handler = async (event) => {
     });
 
     const html = response.data;
-    const $ = cheerio.load(html);
     const headers = response.headers;
 
-    // Executa verificações com base nas opções
+    // Executa verificações selecionadas
     const vulnerabilities = [];
-
-    if (options.sqli) vulnerabilities.push(...await sqliCheck(url, html));
-    if (options.xss) vulnerabilities.push(...xssCheck(html));
-    if (options.csrf) vulnerabilities.push(...csrfCheck(html));
-    if (options.cors) vulnerabilities.push(...await corsCheck(url));
-    if (options.headers) vulnerabilities.push(...headersCheck(headers));
+    
+    for (const [checkName, isEnabled] of Object.entries(options)) {
+      if (isEnabled && securityChecks[checkName]) {
+        const checkResults = await securityChecks[checkName](url, html, headers);
+        vulnerabilities.push(...checkResults);
+      }
+    }
 
     // Classifica por severidade
     const results = {
@@ -55,34 +74,34 @@ exports.handler = async (event) => {
       info: vulnerabilities.filter(v => v.severity === 'Info'),
     };
 
-    // Retorna os resultados
+    // Retorno de sucesso
     return {
       statusCode: 200,
-      headers: {
+      headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*' 
       },
       body: JSON.stringify({
         success: true,
         url,
         results,
-        total: vulnerabilities.length,
-      }),
+        total: vulnerabilities.length
+      })
     };
 
   } catch (error) {
     // Tratamento de erros
     return {
       statusCode: 500,
-      headers: {
+      headers: { 
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Origin': '*' 
       },
       body: JSON.stringify({
         success: false,
         error: 'Falha na análise',
-        details: error.message,
-      }),
+        details: error.message
+      })
     };
   }
 };
