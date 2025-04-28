@@ -1,0 +1,20 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Porto Alegre",
+			"country": {
+				"code": "BR",
+				"name": "Brazil"
+			},
+			"subdivision": {
+				"code": "RS",
+				"name": "Rio Grande do Sul"
+			},
+			"timezone": "America/Sao_Paulo",
+			"latitude": -30.0273,
+			"longitude": -51.2353,
+			"postalCode": "90010"
+		},
+		"timestamp": 1745801969893
+	}
+}

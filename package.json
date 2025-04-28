@@ -1,0 +1,12 @@
+{
+    "name": "advanced-web-scanner",
+    "version": "1.0.0",
+    "dependencies": {
+      "axios": "^0.27.2",
+      "cheerio": "^1.0.0-rc.12",
+      "tls": "^0.0.1"
+    },
+    "devDependencies": {
+      "@netlify/functions": "^1.0.0"
+    }
+  }

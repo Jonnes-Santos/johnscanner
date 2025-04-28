@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scanner de Segurança Avançado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔒 Scanner de Segurança Web</h1>
+      <p>Analise vulnerabilidades em websites</p>
+    </header>
+
+    <div class="scanner-form">
+      <div class="input-group">
+        <input type="url" id="target-url" placeholder="https://exemplo.com" required>
+        <button id="scan-button">Iniciar Varredura</button>
+      </div>
+      <div class="options">
+        <h3>Selecione as verificações:</h3>
+        
+        <label>
+          <input type="checkbox" id="scan-sqli" checked>
+          SQL Injection
+        </label>
+        
+        <label>
+          <input type="checkbox" id="scan-xss" checked>
+          XSS (Cross-Site Scripting)
+        </label>
+        
+        <label>
+          <input type="checkbox" id="scan-csrf" checked>
+          Proteção CSRF
+        </label>
+        
+        <label>
+          <input type="checkbox" id="scan-cors" checked>
+          Configuração CORS
+        </label>
+        
+        <label>
+          <input type="checkbox" id="scan-headers" checked>
+          Headers de Segurança
+        </label>
+      </div>
+
+    <div id="results" class="results-container">
+      <div class="summary-card">
+        <div class="summary-item high">
+          <span class="count">0</span>
+          <span class="label">Alto Risco</span>
+        </div>
+        <div class="summary-item medium">
+          <span class="count">0</span>
+          <span class="label">Médio Risco</span>
+        </div>
+        <div class="summary-item low">
+          <span class="count">0</span>
+          <span class="label">Baixo Risco</span>
+        </div>
+        <div class="summary-item info">
+          <span class="count">0</span>
+          <span class="label">Informações</span>
+        </div>
+      </div>
+
+      <div id="vulnerabilities-list" class="vulnerabilities-list">
+        <div class="empty-state">
+          <img src="assets/shield.svg" alt="Segurança" width="100">
+          <p>Insira uma URL para iniciar a análise de segurança</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

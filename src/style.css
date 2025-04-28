@@ -1,0 +1,187 @@
+/* Estilos gerais */
+:root {
+    --color-high: #e63946;
+    --color-medium: #f4a261;
+    --color-low: #ffd166;
+    --color-info: #457b9d;
+    --color-safe: #2a9d8f;
+    --color-dark: #1d3557;
+    --color-light: #f1faee;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  header h1 {
+    color: var(--color-dark);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Formulário */
+  .scanner-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .input-group input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  .input-group button {
+    background: var(--color-dark);
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .input-group button:hover {
+    background: var(--color-info);
+  }
+  
+  .options {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Resultados */
+  .results-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  .summary-card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+  
+  .summary-item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .summary-item.high { background: var(--color-high); }
+  .summary-item.medium { background: var(--color-medium); }
+  .summary-item.low { background: var(--color-low); }
+  .summary-item.info { background: var(--color-info); }
+  
+  .summary-item .count {
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+  }
+  
+  .summary-item .label {
+    font-size: 0.9rem;
+  }
+  
+  /* Lista de vulnerabilidades */
+  .vulnerabilities-list {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+  }
+  
+  .vulnerability {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid;
+    border-radius: 0 4px 4px 0;
+    background: #f8f9fa;
+  }
+  
+  .vulnerability.high { border-left-color: var(--color-high); }
+  .vulnerability.medium { border-left-color: var(--color-medium); }
+  .vulnerability.low { border-left-color: var(--color-low); }
+  .vulnerability.info { border-left-color: var(--color-info); }
+  
+  .vulnerability h3 {
+    margin-top: 0;
+    color: var(--color-dark);
+  }
+  
+  .vulnerability .meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  
+  .vulnerability .severity {
+    font-weight: bold;
+  }
+  
+  .vulnerability .severity.high { color: var(--color-high); }
+  .vulnerability .severity.medium { color: var(--color-medium); }
+  .vulnerability .severity.low { color: var(--color-low); }
+  
+  .vulnerability .payload {
+    font-family: monospace;
+    background: #eee;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    word-break: break-all;
+  }
+  
+  .vulnerability .description {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .input-group {
+      flex-direction: column;
+    }
+    
+    .summary-card {
+      flex-direction: column;
+    }
+  }
